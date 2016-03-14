@@ -343,6 +343,7 @@ void f_graph::showLeftSide(char * _shownInfo,bool _newBeginKey)
      setColor(BACKGROUND_BLUE);
      showTextInBox(_shownInfo,_newBeginKey,1,7,6,48,19);
      setColor(screenInfo.wAttributes);
+	
      }
 
 // to show given information on the right box - (it means screen)
@@ -464,13 +465,13 @@ void f_graph::blink(char _blinkText[50],const WORD _textColor)
      {
          setColor(_textColor);
          rightBottomText(_blinkText,_textColor);
-         Sleep(500);
+         Sleep(2000);
          clearArea(1,24,110,24);
-         Sleep(700);
+         Sleep(2000);
          setColor(_textColor);
          rightBottomText(_blinkText,_textColor);
          };
-         Sleep(2000);
+         Sleep(3000);
          clearArea(1,24,110,24);
          gotoxy(xBegin,yBegin);
      setColor(screenInfo.wAttributes);

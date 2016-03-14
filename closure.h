@@ -9,7 +9,7 @@ typedef struct DF
 void animatedascii();
 void asciiArt(char*);
 int chekset(DF df,char* ensemble);
-void getDf(DF*,int);
+void getDf(DF*,char*,int);
 DF* allocTabDF(int taille);
 void closur(DF *Tab, int taille, char* ensemble);
 void closur2(DF *Tab, int taille, char* ensemble);

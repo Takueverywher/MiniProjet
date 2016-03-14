@@ -60,26 +60,28 @@ void closur(DF *Tab,int taille,char* ensemble)
 	} while (noset!=0 && infini!=taille);
 
 }
-void getDf(DF* Tab,int taille)
+void getDf(DF* Tab,char* relation,int taille)
 {
-		/*gf.footerLine("FD Input Left side(LS)->Right side(RS) (use ',' to separate attribute).");
-    		     Sleep(8000);             */            
-		
 	int i;
 	for ( i = 0; i < taille; i++)
 	{
-		/*printf("%d :",i+1);
-		printf("\n\t Left side -> :");
-		scanf("%s", Tab[i].Lside);
-		printf("\n\t right side -> :");
-		scanf("%s", Tab[i].Rside);*/
 		if(i==0)
 		{
 			gf.footerLine("FD Input Left side(LS)->Right side(RS) (use ',' to separate attribute).");
     		     Sleep(1000);
 		}
 		gf.footerLine("");std::cout<<i+1<<" LS -> : ";std::cin>>Tab[i].Lside;
+		while (searchC(Tab[i].Lside,relation)!=0)
+		{
+			gf.warning("Error: one attribut or more is not in the relation schema!");
+			gf.footerLine(""); std::cout << i + 1 << " LS -> : "; std::cin >> Tab[i].Lside;
+		}
 		gf.footerLine("");std::cout<<i+1<<" RS -> : ";std::cin>>Tab[i].Rside;
+		while (searchC(Tab[i].Rside, relation) != 0)
+		{
+			gf.warning("Error: one or more attribut is not in the relation schema!");
+			gf.footerLine(""); std::cout << i + 1 << " LS -> : "; std::cin >> Tab[i].Rside;
+		}
 	}
 }
 DF* allocTabDF(int taille)
