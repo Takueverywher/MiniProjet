@@ -6,11 +6,13 @@
 #include "closure.h"
 #include "f_graph.h"
 
+
 void animatedascii()
 {
 	
 	
 }
+// print text from file
 void asciiArt(char* art)
 {
 	int chek=0;
@@ -25,41 +27,15 @@ void asciiArt(char* art)
 	do{
 		chek=fgetc(fp);
 		printf("%c",chek);
+		gf.wait(1);
 		
 	}while(chek!=EOF);
 	
 	fclose(fp);
-	system("pause");
+	system("pause > NULL");
 	
 }
-int chekset(DF df, char* ensemble)
-{	
-	if (strstr(ensemble, df.Lside) != NULL && strstr(ensemble, df.Rside) != NULL)
-		return 0;
-	else if (strstr(ensemble, df.Lside) != NULL)
-	{
-		strcat(ensemble, df.Rside);
-		return 1;
-	}
-	else
-	{
-		return -1;
-	}
-}
-void closur(DF *Tab,int taille,char* ensemble)
-{
-	int i, noset,infini=0; //outOfInfinityLoop
-	do
-	{
-		noset = 0;
-		for (i = 0; i < taille; i++)//n3awd loop ila kan DF flkher hia lawla ghatzad
-		{
-			noset = noset + chekset(Tab[i], ensemble);
-		}
-		infini++;
-	} while (noset!=0 && infini!=taille);
-
-}
+// get Input DF
 void getDf(DF* Tab,char* relation,int taille)
 {
 	int i;
@@ -68,7 +44,7 @@ void getDf(DF* Tab,char* relation,int taille)
 		if(i==0)
 		{
 			gf.footerLine("FD Input Left side(LS)->Right side(RS) (use ',' to separate attribute).");
-    		     Sleep(1000);
+    		     Sleep(2000);
 		}
 		gf.footerLine("");std::cout<<i+1<<" LS -> : ";std::cin>>Tab[i].Lside;
 		while (searchC(Tab[i].Lside,relation)!=0)
@@ -84,13 +60,14 @@ void getDf(DF* Tab,char* relation,int taille)
 		}
 	}
 }
+// memory allocation for DF Type
 DF* allocTabDF(int taille)
 {
 	DF *ptr = NULL;
 	ptr = (DF*)malloc(sizeof(DF)*taille);
 	return ptr;
 }
-
+// string Copy
 void stringCopy(char str1[], char str2[]) {
 	int i = 0;
 
@@ -101,17 +78,12 @@ void stringCopy(char str1[], char str2[]) {
 
 	str2[i] = '\0';
 }
-// ALL FUNCTIONS WORK :D
+// char search
 int searchC(char* str, char * ensemble)
 {
 	int i=0,chek=0, chek2=0;
 	do
 	{
-		/*if (str[i]==',')
-		{
-			chek2++;
-			i++;
-		}*/
 		if (strchr(ensemble, str[i]) != NULL) // if strchr find Char==to one of ensemble chek++
 			chek++;
 		i++;
@@ -121,11 +93,9 @@ int searchC(char* str, char * ensemble)
 	else
 		return 1;
 }
-
+// add attribut 
 int chekSetAndApply(DF df, char* ensemble)
-{
-	  /*strstr(ensemble, df.Lside) != NULL && strstr(ensemble, df.Rside) != NULL*/
-		
+{		
 	 if (searchC(df.Lside, ensemble)== 0)
 	{
 		if (searchC(df.Rside, ensemble) == 0)
@@ -138,16 +108,18 @@ int chekSetAndApply(DF df, char* ensemble)
 	}
 	else
 	{
-		return 0; // TODO 3awd drab tlila f hadi
+		return 0; 
 	}
 }
+// key calculator
 int chekKey(char * relation, char * ensemble)
 {
 	if(searchC(relation,ensemble)==0)
 	return 1;
 	return 0;
 }
-void closur2(DF *Tab, int taille, char* ensemble)
+// loop to calculate the closur
+void closur(DF *Tab, int taille, char* ensemble)
 {
 	int i, noset, infini = 0; //outOfInfinityLoop
 	do
@@ -161,6 +133,7 @@ void closur2(DF *Tab, int taille, char* ensemble)
 	} while (noset != 0 && infini != 2*taille);
 
 }
+// DF Type display
 void affichageDF(DF* Tab,int taille)
 {
 	for(int i=0;i<taille;i++)

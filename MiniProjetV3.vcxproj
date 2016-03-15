@@ -92,6 +92,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>WINMM.LIB;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -153,6 +154,12 @@
   <ItemGroup>
     <Text Include="key.txt" />
     <Text Include="welcome.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="goodBy.wav" />
+    <Media Include="keyF.wav" />
+    <Media Include="keynF.wav" />
+    <Media Include="welcome.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

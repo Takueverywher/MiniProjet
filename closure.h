@@ -8,11 +8,9 @@ typedef struct DF
 }DF;
 void animatedascii();
 void asciiArt(char*);
-int chekset(DF df,char* ensemble);
 void getDf(DF*,char*,int);
 DF* allocTabDF(int taille);
 void closur(DF *Tab, int taille, char* ensemble);
-void closur2(DF *Tab, int taille, char* ensemble);
 void stringCopy(char str1[], char str2[]);
 int searchC(char * str,char*ensemble);
 int chekSetAndApply(DF df, char* ensemble);
